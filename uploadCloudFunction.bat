@@ -1,0 +1,1 @@
+"D:\soft\微信web开发者工具\cli.bat" cloud functions deploy --e cloud1-8g3ag9zib406a905 --n quickstartFunctions --r --project "E:\大三上微信小程序课设\哔哩哔哩" --report_first --report
