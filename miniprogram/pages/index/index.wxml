@@ -1,0 +1,45 @@
+
+<nav-bar navbar-data='{{navbarData}}'></nav-bar>
+
+<view class='home-page' style='margin-top: {{height}}px'>
+<view class='page_row'>
+    <view class="search">
+      <view class="df search_arr">
+        <icon class="searchcion" size='20' type='search'></icon>
+        <input disabled/>
+      </view>
+    </view>
+  </view>
+
+  <swiper class="lunbo" autoplay="true" indicator-dots="true" circular="true" indicator-active-color="#F47498" indicator-color="#FFFFFF">
+  <swiper-item wx:for="{{swiperArr}}" wx:key="_id">
+    <image bindtap="getLunboVideo" data-vid="{{item.vid}}" src="{{item.imgUrl}}"></image>
+  </swiper-item>
+  <!-- <swiper-item>
+    <image src="cloud://cloud1-8g3ag9zib406a905.636c-cloud1-8g3ag9zib406a905-1307509385/bilibili/lunbo/lunbo2.png"></image>
+  </swiper-item>
+  <swiper-item>
+    <image src="cloud://cloud1-8g3ag9zib406a905.636c-cloud1-8g3ag9zib406a905-1307509385/bilibili/lunbo/lunbo3.png"></image> -->
+<!-- </swiper-item> -->
+</swiper>
+
+<!--视频区域-->
+  <view class="videocontainer">
+<view class="list">
+  <view  wx:for="{{videoArr}}" wx:key="_id">
+    <view class="video" bindtap="getVideo" data-idx="{{index}}"><image style="width: 100%; height: 100%; border-radius: 10rpx;" src="{{item.data.pic}}"></image></view>
+    <!-- <image class="video" src="{{item.data.pic}}"></image> -->
+    <view class="title" style="font-size: 13px;">{{item.data.title}}</view>
+  </view>
+</view>
+</view>
+
+<!-- <view class="content-wrapper">
+      <block wx:for="{{videoArr}}" wx:key="avid">
+        <template id="jiefItem1" data="{{item}}" />
+      </block>
+</view> -->
+
+</view>
+
+

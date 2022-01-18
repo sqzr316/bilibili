@@ -1,0 +1,64 @@
+
+<nav-bar navbar-data='{{navbarData}}'></nav-bar>
+
+ <view class='home-page' style='margin-top: {{height}}px'> 
+    <!-- <view class='home-page' style='margin-top: {{height}}px' bindtap="sou">
+<view class='page_row' bindtap="sou">
+    <view class="search">
+      <view class="df search_arr">
+        <icon class="searchcion" size='20' type='search'></icon>
+        <input type="text"/>
+      </view>
+    </view>
+  </view>
+</view> -->
+
+    <view class="top">
+  <view class="topsearch">
+    <view class="frame">
+      <input bindconfirm="search" focus="true" value="{{soutext}}" bindinput="souinput"></input>
+    </view>
+    <text bindtap="search">搜索</text>
+  </view>
+</view>
+<view>
+  <!-- <text wx:for="{{videoArr}}" wx:key="_id">
+    {{item.data.title}}
+  </text> -->
+</view>
+<view class="history" wx:if="{{history}}">
+  <view class="history_title">
+    <text>历史搜索</text>
+    <image src="../../images/delete.png" mode="widthFix" style="width:5%;" bindtap="cleanhistory"></image>
+  </view>
+  <view class="history_text">
+    <text wx:for="{{newArray}}" wx:key="key" data-text="{{item}}" bindtap="textfz">{{item}}</text>
+  </view>
+</view>
+<view class="none" wx:if="{{noneview}}">
+  <image src="../../images/信息空心.png" mode="widthFix" style="width:20%"></image>
+  <text>抱歉，没有搜索到相关视频</text>
+</view>
+<!-- <view class='swiper_con' wx:if="{{videolist}}"> -->
+  <!-- <view class='swiper_con_view' wx:for="{{videoArr}}" wx:key="_id">
+    <image src="{{item.data.pic}}" mode="widthFix" style="width:100%"></image>
+    <view style="width:90%;margin:5%;">
+      <text style="font-size:24rpx">{{item.data.title}}</text>
+      <view class="swiper_con_view_view">
+        <view style="width:80%;">
+        </view>
+      </view>
+    </view>
+  </view> -->
+  <view class="videocontainer" wx:if="{{videolist}}">
+<view class="list">
+  <view  wx:for="{{videoArr}}" wx:key="_id">
+    <view class="video" bindtap="getVideo" data-idx="{{index}}"><image style="width: 100%; height: 100%; border-radius: 10rpx;" src="{{item.data.pic}}"></image></view>
+    <!-- <image class="video" src="{{item.data.pic}}"></image> -->
+    <view class="title" style="font-size: 13px;">{{item.data.title}}</view>
+  </view>
+</view>
+</view>
+<!-- </view> -->
+
+</view> 

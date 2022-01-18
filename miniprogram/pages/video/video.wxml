@@ -1,0 +1,138 @@
+<!--pages/video/video.wxml-->
+<nav-bar navbar-data='{{navbarData}}'></nav-bar>
+<!-- <video 
+      id="myVideo" 
+      src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" 
+      danmu-list="{{danmuList}}" 
+      enable-danmu 
+      danmu-btn 
+      show-center-play-btn='{{false}}' 
+      show-play-btn="{{true}}" 
+      controls
+      picture-in-picture-mode="{{['push', 'pop']}}"
+    ></video> -->
+
+    <view class="play">
+ <view class="nav-bar">
+    <view class="nav-wrp">
+    </view>
+</view>
+<view class="player-container">
+<view class="player-box">
+  <video style="margin-top: 142rpx; height: 410rpx; width: 100%" id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" binderror="videoErrorCallback" bindtimeupdate="videoTimeUpdate" danmu-list="{{danmuList}}" enable-danmu danmu-btn controls></video>
+ </view>
+</view>
+
+<!-- 弹幕功能：输入 js接收 存入数组(or存入数据库) 根据id 读取弹幕 data中arr 显示 -->
+<view class="danmu">
+<view class="danmuinput" style="background:#fff;">
+            <input style="font-size: 32rpx; height: 60rpx;" bindinput="getInputValue" type="text" placeholder="发一条友好的弹幕吧[]~(￣▽￣)~*" value="{{inputValue}}">
+            </input>
+        </view>
+  <view class="senddanmu">
+  <view class="btn" bindtap="bindSendDanmu" data-vid="{{curVideoDetail._id}}">发送弹幕</view> 
+<!--mask-->
+<view class="drawer_screen" wx:if="{{showModalStatus}}"></view> 
+<!--content-->
+<!--使用animation属性指定需要执行的动画-->
+<view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalStatus}}"> 
+ <!--drawer content-->
+ <view class="drawer_content"> 
+ <view class="drawer_title line">
+ <view class="btn-area">
+<view class="weui-cell weui-cell_input">
+<view class="weui-cell__bd">
+<input class="weui-input" placeholder="请输入弹幕" bindblur="bindInputBlur" />
+</view>
+</view>
+<button type="primary" style="margin:30rpx; background:#EA6CAF;" bindtap="bindSendDanmu">发送弹幕</button>
+</view>
+</view>
+
+<view class="weui-cells weui-cells_after-title">
+<view class="weui-cell weui-cell_switch">
+<view class="weui-cell__bd">随机颜色</view>
+<view class="weui-cell__ft">
+<switch checked bindchange="switchChange" color="#EA6CAF"/>
+</view>
+</view>
+<view class="colorstyle" bindtap="selectColor">
+<text>选择颜色</text>
+<view style="height:80rpx;width:80rpx;line-height: 100rpx;margin:10rpx;background-color:{{numberColor}}"></view>
+</view>
+ </view> 
+ </view> 
+</view> 
+  </view>
+</view>
+<view class="videoPage">
+  <button class="videoshare" open-type="share" bindtap="onShareAppMessage">
+     <view class="video-btn">
+      <view class="video-pic">
+       <image src="../../resources/images/share.png"></image>
+      </view>
+      <text>转发</text>
+    </view> 
+  </button>
+  <button class="videocollect">
+  <view class="video-btn" bindtap="favor">
+      <view class="video-pic">
+       <image wx:if="{{!favor}}" src="../../resources/images/collect.png"></image>
+       <image wx:if="{{favor}}" src="../../images/video/收藏.png"></image>
+      </view>
+      <text>收藏</text> 
+    </view> 
+  </button>
+  <button class="videodownload">
+  <view class="video-btn" bindtap="zan">
+      <view class="video-pic">
+       <image wx:if="{{!zan}}" src="../../images/video/未点赞.png"></image>
+       <image wx:if="{{zan}}" src="../../images/video/点赞_块.png"></image>
+      </view>
+      <text wx:if="{{!zan}}">点赞</text>
+      <text wx:if="{{zan}}">取消</text>
+    </view> 
+  </button>
+</view>
+
+<view class="videoinfo">
+<view class="videoinfo-title">
+ <text>{{curVideoDetail.data.title}}</text>
+ </view>
+ <view class="video-info">
+   <image class="video-info-play-pic" src="../../resources/images/play.png"></image>
+   <text class="video-info-play-number">{{curVideoDetail.data.stat.view}}</text>
+   <image class="video-info-play-pic" src="../../resources/images/danmu_32.png"></image>
+   <text class="video-info-play-number">{{danmuList.length}}</text>
+ </view>
+ <view class="video-introduce">
+      <text selectable="true">{{curVideoDetail.data.desc}}</text>
+ </view>
+</view>
+<view class="video-upinfo">
+      <view class="flex-cont flex-simple">
+        <view class="s-img"><image src="{{curVideoDetail.data.owner.face}}"></image></view>
+        <view class="flex-item">
+          <text class="s-tit" style="width: 260rpx;">{{curVideoDetail.data.owner.name}}</text>
+        </view>
+        <button plain style="display: block; color: #EA6CAF; border-color: #EA6CAF; margin-left: 25px; width: 200rpx; height: 100rpx; font-size: 36rpx; padding: 25rpx 30rpx" class="marginview" bindtap="guanzhu"><text wx:if="{{!guanzhu}}">关注</text><text wx:if="{{guanzhu}}">取关</text></button>
+      </view>
+</view>
+
+<!--视频区域-->
+<view class="videocontainer">
+<view class="list">
+  <view  wx:for="{{videoArr}}" wx:key="_id">
+    <view class="video" bindtap="getVideo" data-idx="{{index}}"><image style="width: 100%; height: 100%; border-radius: 10rpx;" src="{{item.data.pic}}"></image></view>
+    <!-- <image class="video" src="{{item.data.pic}}"></image> -->
+    <view class="title" style="font-size: 13px;">{{item.data.title}}</view>
+  </view>
+</view>
+</view>
+<!-- <button bindtap="testVideoList">测试</button> -->
+
+</view>
+
+
+
+

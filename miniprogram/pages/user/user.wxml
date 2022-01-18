@@ -1,0 +1,40 @@
+<nav-bar navbar-data='{{navbarData}}'></nav-bar>
+ <block>
+  <view class="user">
+    <view class="user-wrapper">
+        <view class="flex-cont flex-simple">
+          <view class="s-img" bindtap="getUserProfile"><image wx:if="{{!hasUserInfo}}" src="../../images/userInfo/未登录.png"></image>
+          <image wx:if="{{hasUserInfo}}" src="{{userInfo.avatarUrl}}"></image>
+
+        </view>
+          <view class="flex-item">
+            <text class="s-tit" wx:if="{{!hasUserInfo}}">游客</text>
+            <text class="s-tit" wx:if="{{hasUserInfo}}">{{userInfo.nickName}}</text>
+            <text class="s-desc">硬币：{{userdb.coins}}</text>
+          </view>
+        </view>
+    </view>
+  <view class="act-wrapper">
+  <view class="act-item" bindtap="toHistory">
+  <view class="bili-icon-history-2"><image src="../../resources/images/历史记录.png"></image></view>
+  <text class="act-name">历史记录</text>
+  <view class="bili-icon-arrow"><image src="../../resources/images/more.png"></image></view>
+  </view>
+
+
+  <view class="act-item" bindtap="toFeedback">
+  <!-- <button style="width: 100%;" open-type="feedback"></button> -->
+  <view class="bili-icon-history-2"><image style="width: 55rpx; height: 55rpx;" src="../../images/feedback/feedback.png"></image></view>
+  <text class="act-name">意见反馈</text>
+  <view class="bili-icon-arrow"><image src="../../resources/images/more.png"></image></view>
+  </view>
+
+  <text class="act-tooltip">登陆后可以同步播放记录哦～</text>
+  <view class="account-wrapper">
+  <text class="account-btn" wx:if="{{!hasUserInfo}}" bindtap="getUserProfile">登  录</text>
+  <text class="account-btn" wx:if="{{hasUserInfo}}" bindtap="logout">退  出</text>
+  
+  </view>
+  </view>
+  </view>
+  </block>

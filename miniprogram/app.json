@@ -1,0 +1,60 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/hot/hot",
+        "pages/feedback/feedback",
+        "pages/fenqvvideo/fenqvvideo",
+        "pages/history/history",
+        "pages/video/video",
+        "pages/fenqv/fenqv",
+        "pages/home/home",
+        "pages/user/user",
+        "pages/sou/sou",
+        "pages/getOpenId/index",
+        "pages/getMiniProgramCode/index",
+        "pages/deployService/index",
+        "pages/createCollection/index",
+        "pages/uploadFile/index",
+        "pages/selectRecord/index",
+        "pages/updateRecord/index",
+        "pages/updateRecordResult/index",
+        "pages/updateRecordSuccess/index",
+        "pages/sumRecord/index",
+        "pages/sumRecordResult/index",
+        "components/navbar/index",
+        "components/navbar2/index"
+    ],
+    "window": {
+        "backgroundColor": "#FEFEFE",
+        "backgroundTextStyle": "dark",
+        "navigationBarBackgroundColor": "#FEFEFE",
+        "navigationBarTitleText": "哔哩哔哩",
+        "navigationBarTextStyle": "black",
+        "navigationStyle": "custom"
+    },
+    "tabBar": {
+      "color": "#757575",
+      "selectedColor": "#FD7299",
+      "list": [{
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tabars/home-noselect.png",
+        "selectedIconPath": "images/tabars/home-select.png"
+      },
+      {
+        "pagePath": "pages/fenqv/fenqv",
+        "text": "分区",
+        "iconPath": "images/tabars/分区-未选中.png",
+        "selectedIconPath": "images/tabars/分区-选中.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "images/tabars/我的-未选中.png",
+        "selectedIconPath": "images/tabars/我的-选中.png"
+      }
+    ]
+    },
+    "sitemapLocation": "sitemap.json",
+    "style": "v2"
+}

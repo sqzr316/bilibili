@@ -1,0 +1,20 @@
+<!--pages/fenqv/fenqv.wxml-->
+<nav-bar navbar-data='{{navbarData}}'></nav-bar>
+ <!--分区  begin-->
+ <block>
+    <view class="channel">
+      <block wx:for="{{channelname}}" wx:key="channelnum" wx:for-item="channelnumitem">
+        <view class="channel_single" style="width:{{channeldistance}}px" bindtap="search" data-name="{{channelnumitem.name}}">
+          <view class="channel_noname">
+            <image src="{{channelnumitem.icon}}"
+             style="width:{{channeldistance-20}}rpx;height:{{channeldistance-20}}rpx">
+               </image>
+          </view>
+          <view class="channel_name">
+            <text>{{channelnumitem.name}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </block>
+  <!--分区  end-->
